@@ -9,6 +9,7 @@ class Human:
         self.gladness = 50
         self.satiety = 50
         self.money = 100
+        self.alive = True
     def get_home(self):
         self.home = House()
     def get_car(self):
@@ -102,26 +103,45 @@ class Human:
         print(f'job_name - {self.Job.job_name}')
         # Home Work - Написать код, который выводит всю инфу о машине, т.е. бренд, кол бензина и тех ссотояние
     def is_alive(self):
-        pass
+        if self.satiety <= 0:
+            self.alive = False
+            print("die")
+        elif self.gladness <= 0:
+            print("ahhh i have depresion")
+        elif self.money <= 0:
+            print("ahhh i don't have money")
+            self.alive = False
     def live(self, day):
         if self.is_alive() == False:
             return False
         if self.home is None:
             print('Settled in the house')
             self.get_home()
+        else:
+            pass
         if self.car is None:
             print('select the car')
             self.get_car()
+        else:
+            pass
         if self.job is None:
             print('select the job')
             self.get_job()
+        else:
+            pass
         # Аналогично 98 строке, проверьте наличие автомобиля и работы
         # И вывести инфу о марке авто
         # А также вывести инфу о работе с уровнем зарплаты
 
         # Самое интересное - устроить веселую жизнь герою (по аналогии со студентом)
+    def live(self, day):
         dice = random.randint(1, 4)
-
+        if dice == 1:
+            self.work()
+        if dice == 2:
+            self.chill()
+        if dice == 3:
+            self.eat()
         if self.satiety < 10:
             print("I'll go eat")
             self.eat()
@@ -138,6 +158,9 @@ class Human:
         elif self.car.strength <= 0:
             print("i have to reapeir my car")
             self.to_repair()
+        self.is_alive()
+        self.live()
+        self.days_indexes()
         # Проверить количество денег
         # Проверить тех состояние авто
 
@@ -184,3 +207,11 @@ brands_of_car = {
     "Lada":{"fuel":50, "strength":40, "consumption": 10},
     "Volvo":{"fuel":70, "strength":150, "consumption": 8},
     "Ferrari":{"fuel":80, "strength":120, "consumption": 14}}
+
+
+simson = Human(name = "simson")
+for day in range(365):
+    if simson.alive == False:
+        print(simson.live(day))
+        break
+    simson.live(day)
