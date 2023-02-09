@@ -98,6 +98,13 @@ class Human:
         if self.home is None:
             print('Settled in the house')
             self.get_home()
+        if self.car is None:
+            print('select the car')
+            self.get_car()
+
+        if self.job is None:
+            print('select the job')
+            self.get_job()
         # Аналогично 98 строке, проверьте наличие автомобиля и работы
         # И вывести инфу о марке авто
         # А также вывести инфу о работе с уровнем зарплаты
@@ -114,6 +121,12 @@ class Human:
             else:
                 print("Let's chill")
                 self.chill()
+        elif self.money <= 20:
+            print("i have to work")
+            self.work()
+        elif self.car.strength <= 0:
+            print("i have to reapeir my car")
+            self.to_repair()
         # Проверить количество денег
         # Проверить тех состояние авто
 
@@ -124,6 +137,7 @@ class Auto:
         self.fuel = brand_list[self.brand]['fuel']
         self.strength = brand_list[self.brand]['strength']
         self.consumption = brand_list[self.brand]['consumption']
+
 
     def drive(self):
         if self.strength > 0 and self.fuel > self.consumption:
