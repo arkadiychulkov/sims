@@ -85,10 +85,21 @@ class Human:
         print(f'Money - {self.money}')
         print(f'Satiety - {self.satiety}')
         print(f'Gladness - {self.gladness}')
-        home_indexess = "Home indexxes"
+        home_indexess = "Home indexes"
         print(f"{home_indexess:^50}", '\n')
         print(f'Food - {self.home.food}')
         print(f'Mess - {self.home.mess}')
+        car_indexess = "Car indexes"
+        print(f"{car_indexess:^50}", '\n')
+        print(f'fuel - {self.Auto.fuel}')
+        print(f'brand - {self.Auto.brand}')
+        print(f'strength - {self.Auto.strength}')
+        print(f'consumption - {self.Auto.consumption}')
+        job_indexess = "Job indexes"
+        print(f"{job_indexess:=^50}", '\n')
+        print(f'salery - {self.Job.salery}')
+        print(f'gladness_less - {self.Job.gladness_less}')
+        print(f'job_name - {self.Job.job_name}')
         # Home Work - Написать код, который выводит всю инфу о машине, т.е. бренд, кол бензина и тех ссотояние
     def is_alive(self):
         pass
@@ -101,7 +112,6 @@ class Human:
         if self.car is None:
             print('select the car')
             self.get_car()
-
         if self.job is None:
             print('select the job')
             self.get_job()
@@ -111,6 +121,7 @@ class Human:
 
         # Самое интересное - устроить веселую жизнь герою (по аналогии со студентом)
         dice = random.randint(1, 4)
+
         if self.satiety < 10:
             print("I'll go eat")
             self.eat()
@@ -157,13 +168,14 @@ class Job:
         self.job = random.choice(list(job_list))
         self.salery = job_list[self.job]['salary']
         self.gladness_less = job_list[self.job]['gladness_less']
+        self.job_name = job_list[self.job]["developer"]
 
 
 job_list = {
-    "Java developer": {"salary": 50, "gladness_less": 10},
-    "Python developer": {"salary": 40, "gladness_less": 3},
-    "C++ developer": {"salary": 45, "gladness_less": 25},
-    "Rust developer": {"salary":70, "gladness_less": 1 }}
+    "Java developer": {"salary": 50, "gladness_less": 10, "developer": "Java developer"},
+    "Python developer": {"salary": 40, "gladness_less": 3, "developer": "Python developer"},
+    "C++ developer": {"salary": 45, "gladness_less": 25, "developer": "C++ developer"},
+    "Rust developer": {"salary":70, "gladness_less": 1, "developer": "Rust developer" }}
 
 
 
