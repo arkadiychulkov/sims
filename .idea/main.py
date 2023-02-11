@@ -90,9 +90,9 @@ class Human:
         print(f"{home_indexess:^50}", '\n')
         print(f'Food - {self.home.food}')
         print(f'Mess - {self.home.mess}')
-        car_indexess = "Car indexes"
+        car_indexess = f"f{self.car.brand} Car indexes"
         print(f"{car_indexess:^50}", '\n')
-        print(f'fuel - {self.Auto.fuel}')
+        print(f'fuel - {self.Auto.fuel}',)
         print(f'brand - {self.Auto.brand}')
         print(f'strength - {self.Auto.strength}')
         print(f'consumption - {self.Auto.consumption}')
@@ -102,15 +102,17 @@ class Human:
         print(f'gladness_less - {self.Job.gladness_less}')
         print(f'job_name - {self.Job.job_name}')
         # Home Work - Написать код, который выводит всю инфу о машине, т.е. бренд, кол бензина и тех ссотояние
-    def is_alive(self):
+    def is_alive(self,day):
         if self.satiety <= 0:
-            self.alive = False
-            print("die")
+            print("have to eat")
+            return False
         elif self.gladness <= 0:
             print("ahhh i have depresion")
-        elif self.money <= 0:
+            return False
+        elif self.money <= -500:
             print("ahhh i don't have money")
-            self.alive = False
+            return False
+
     def live(self, day):
         if self.is_alive() == False:
             return False
@@ -120,28 +122,46 @@ class Human:
         else:
             pass
         if self.car is None:
-            print('select the car')
+            print('select the car',{self.car.brand})
             self.get_car()
         else:
             pass
         if self.job is None:
-            print('select the job')
+            print('select the job',{self.job}, 'salary', {self.job.salery})
             self.get_job()
         else:
             pass
+        if self.satiety <= 0:
+            print("have to eat")
+            self.eat()
+        elif self.gladness <= 0:
+            print("ahhh i have depresion")
+            self.chill()
+        elif self.money <= -100:
+            print("ahhh i don't have money")
+            self.work()
+        elif self.car.strength <= 0:
+            print("ahhh i don't have money")
+            self.to_repair()
         # Аналогично 98 строке, проверьте наличие автомобиля и работы
         # И вывести инфу о марке авто
         # А также вывести инфу о работе с уровнем зарплаты
 
         # Самое интересное - устроить веселую жизнь герою (по аналогии со студентом)
-    def live(self, day):
+        self.days_indexes(day)
         dice = random.randint(1, 4)
         if dice == 1:
             self.work()
+            print('lets work')
         if dice == 2:
             self.chill()
+            print('lets chill')
         if dice == 3:
-            self.eat()
+            self.shopping(manage="delicacies")
+            print('lets eat delicacies')
+        if dice == 4:
+            self.clean_home()
+            print('lets clining')
         if self.satiety < 10:
             print("I'll go eat")
             self.eat()
@@ -210,8 +230,6 @@ brands_of_car = {
 
 
 simson = Human(name = "simson")
-for day in range(365):
-    if simson.alive == False:
-        print(simson.live(day))
+for day in range(1,8):
+    if simson.live(day) == False:
         break
-    simson.live(day)
