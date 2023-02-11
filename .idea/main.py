@@ -92,17 +92,17 @@ class Human:
         print(f'Mess - {self.home.mess}')
         car_indexess = f"f{self.car.brand} Car indexes"
         print(f"{car_indexess:^50}", '\n')
-        print(f'fuel - {self.Auto.fuel}',)
-        print(f'brand - {self.Auto.brand}')
-        print(f'strength - {self.Auto.strength}')
-        print(f'consumption - {self.Auto.consumption}')
+        print(f'fuel - {self.car.fuel}',)
+        print(f'brand - {self.car.brand}')
+        print(f'strength - {self.car.strength}')
+        print(f'consumption - {self.car.consumption}')
         job_indexess = "Job indexes"
         print(f"{job_indexess:=^50}", '\n')
-        print(f'salery - {self.Job.salery}')
-        print(f'gladness_less - {self.Job.gladness_less}')
-        print(f'job_name - {self.Job.job_name}')
+        print(f'Salary - {self.job.salary}')
+        print(f'gladness_less - {self.job.gladness_less}')
+        print(f'job_name - {self.job.job_name}')
         # Home Work - Написать код, который выводит всю инфу о машине, т.е. бренд, кол бензина и тех ссотояние
-    def is_alive(self,day):
+    def is_alive(self, day):
         if self.satiety <= 0:
             print("have to eat")
             return False
@@ -114,23 +114,17 @@ class Human:
             return False
 
     def live(self, day):
-        if self.is_alive() == False:
+        if self.is_alive(day) == False:
             return False
         if self.home is None:
             print('Settled in the house')
             self.get_home()
-        else:
-            pass
         if self.car is None:
-            print('select the car',{self.car.brand})
             self.get_car()
-        else:
-            pass
+            print('select the car', self.car.brand)
         if self.job is None:
-            print('select the job',{self.job}, 'salary', {self.job.salery})
             self.get_job()
-        else:
-            pass
+            print('select the job',{self.job}, 'salary', {self.job.salary})
         if self.satiety <= 0:
             print("have to eat")
             self.eat()
@@ -178,9 +172,6 @@ class Human:
         elif self.car.strength <= 0:
             print("i have to reapeir my car")
             self.to_repair()
-        self.is_alive()
-        self.live()
-        self.days_indexes()
         # Проверить количество денег
         # Проверить тех состояние авто
 
@@ -209,7 +200,7 @@ class House:
 class Job:
     def __init__(self, job_list):
         self.job = random.choice(list(job_list))
-        self.salery = job_list[self.job]['salary']
+        self.salary = job_list[self.job]['salary']
         self.gladness_less = job_list[self.job]['gladness_less']
         self.job_name = job_list[self.job]["developer"]
 
